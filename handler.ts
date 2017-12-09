@@ -1,3 +1,5 @@
+import { Handler, Context, Callback } from 'aws-lambda';
+
 export const submitForm = (event, context, cb) => {
   const response = {
     statusCode: 200,
