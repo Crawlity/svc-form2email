@@ -1,5 +1,5 @@
 {
-  "name": "aws-nodejs-typescript",
+  "name": "form2email",
   "version": "1.0.0",
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
@@ -13,6 +13,6 @@
     "webpack": "^3.6.0",
     "eslint": "^4.11.0"
   },
-  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "author": "James Tharpe",
   "license": "MIT"
 }
