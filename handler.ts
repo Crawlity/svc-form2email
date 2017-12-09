@@ -1,4 +1,4 @@
-export const hello = (event, context, cb) => {
+export const submitForm = (event, context, cb) => {
   const response = {
     statusCode: 200,
     body: JSON.stringify({
