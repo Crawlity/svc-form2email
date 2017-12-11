@@ -18,4 +18,4 @@ export const ses = (subject : string, contents : string) : Promise<any> => {
   };
 
   return awsSes.sendEmail(params, null).promise();
-};
+}; // todo: Test
