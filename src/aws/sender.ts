@@ -11,7 +11,7 @@ export const ses = (subject : string, contents : string) : Promise<any> => {
         Html: { Charset: charset, Data: contents },
         Text: { Charset: charset, Data: contents }
       },
-      Subject: { Charset: charset, Data: subject || 'Crawlity form submission' }
+      Subject: { Charset: charset, Data: subject || 'Form2Email form submission' }
     },
     ReplyToAddresses: [toAndFromAddress],
     Source: toAndFromAddress

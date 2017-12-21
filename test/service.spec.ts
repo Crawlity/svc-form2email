@@ -3,8 +3,8 @@ import * as chai from 'chai';
 import * as asPromised from 'chai-as-promised'
 import * as sinon from 'sinon';
 
-import { submitForm } from '../service';
-import { html } from '../formatter';
+import { submitForm } from '../src/service';
+import { html } from '../src/formatter';
 import { SinonStub, SinonSpy } from 'sinon';
 
 const expect = chai.expect;
@@ -51,7 +51,6 @@ describe("service", () => {
       submitForm({ a: "b" }, sendStub, formatSpy).then(() => {
         formatSpy.calledOnce.should.be.true;
         sendStub.calledOnce.should.be.true;
-        console.log(sendStub.lastCall.args);
         sendStub.calledWith(
           "New message from Form2Email",
           "<table>\n" +

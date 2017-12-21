@@ -12,7 +12,7 @@ provider:
 
 functions:
   submitForm:
-    handler: handler.submitForm
+    handler: src/aws/handler.submitForm
     events:
       - http:
           method: post

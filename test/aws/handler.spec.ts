@@ -7,7 +7,7 @@ import * as chai from 'chai';
 import { Handler, Callback, Context } from 'aws-lambda';
 
 // System under test
-import { submitForm } from '../handler';
+import { submitForm } from '../../src/aws/handler';
 
 // Wiring
 // chai.use(asPromised);
