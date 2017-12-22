@@ -1,3 +1,8 @@
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
 service:
   name: form2email
 
@@ -9,6 +14,18 @@ provider:
   name: aws
   runtime: nodejs6.10
   profile: crawlity-serverless-admin
+  memorySize: 128 # default is 1024MB, 128MB is minimum
+  timeout: 5 # default is 6 seconds, cold start is about 4.5 seconds, hot is about half a second
+  iamRoleStatements: # permissions for ALL of your functions can be set here
+    - Effect: "Allow"
+      Action:
+        - "ses:SendEmail"
+        - "ses:SendRawEmail"
+      Resource: "*"
+  environment:
+    TO_FROM_EMAIL: jimmy.tharpe@gmail.com
+    SUBJECT_FIELD_KEY: subject
+    DEFAULT_SUBJECT: New message from Form2Email
 
 functions:
   submitForm:
@@ -17,3 +34,4 @@ functions:
       - http:
           method: post
           path: forms
+          cors: true

@@ -3,7 +3,7 @@ import * as chai from 'chai';
 import * as asPromised from 'chai-as-promised'
 import * as sinon from 'sinon';
 
-import { submitForm } from '../src/service';
+import { Service } from '../src/service';
 import { html } from '../src/formatter';
 import { SinonStub, SinonSpy } from 'sinon';
 
@@ -11,7 +11,7 @@ const expect = chai.expect;
 const should = chai.should();
 chai.use(asPromised);
 
-describe("service", () => {
+describe("Service", () => {
   describe("submitForm", () => {
     let sendStub   : SinonStub = null,
         formatSpy : SinonSpy = null;
@@ -24,7 +24,7 @@ describe("service", () => {
     // afterEach(() => formatSpy.restore());
 
     it("should send message with specified subject and correct format", () =>
-      submitForm(
+      Service.submitForm(
         { formField: "some value", subject: "subject" },
         sendStub,
         formatSpy
@@ -48,7 +48,7 @@ describe("service", () => {
       }).should.be.fulfilled);
 
     it("should default subject if none specified", () =>
-      submitForm({ a: "b" }, sendStub, formatSpy).then(() => {
+      Service.submitForm({ a: "b" }, sendStub, formatSpy).then(() => {
         formatSpy.calledOnce.should.be.true;
         sendStub.calledOnce.should.be.true;
         sendStub.calledWith(
@@ -63,21 +63,21 @@ describe("service", () => {
       }).should.be.fulfilled);
 
     it("should error when form input is null", () =>
-      submitForm(null, null, html)
+      Service.submitForm(null, null, html)
         .should.eventually.be.rejectedWith(
-          "[BadRequest] Validation error: No input or invalid input received"
+          "Validation error: No input or invalid input received"
         ));
 
     it("should error when FirstName contains a number", () =>
-      submitForm({ FirstName: "Numb3r" }, sendStub, html)
+      Service.submitForm({ FirstName: "Numb3r" }, sendStub, html)
         .should.eventually.be.rejectedWith(
-          "[BadRequest] Validation error: No input or invalid input received"
+          "Validation error: No input or invalid input received"
         ));
 
     it("should error when form input is empty", () =>
-      submitForm({}, sendStub, html)
+      Service.submitForm({}, sendStub, html)
         .should.eventually.be.rejectedWith(
-          "[BadRequest] Validation error: No input or invalid input received"
+          "Validation error: No input or invalid input received"
         ));
   });
 });

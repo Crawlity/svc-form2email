@@ -1,11 +1,10 @@
 import { Formatter } from "./service";
 
-
 const htmlFormatter = {
-  null:   o => "",
-  string: s => "<p>" + s.replace("\n", "</p>\n<p>") + "</p>",
-  array:  a => a.reduce((result, item) => result + this.html(item) + "\n", ""),
-  object: o =>
+  null:   (n : any) => "",
+  string: (s : String) => "<p>" + s.replace("\n", "</p>\n<p>") + "</p>",
+  array:  (a : Array<any>) => a.reduce((result, item) => result + this.format(item) + "\n", ""),
+  object: (o : object) =>
     Object.keys(o).reduce(
       (result, key) =>
         result +
@@ -15,10 +14,12 @@ const htmlFormatter = {
         "  </tr>\n",
       "<table>\n"
     ) + "</table>",
-  format: o =>
+  format: (o : object) =>
     (o === null
       ? htmlFormatter.null
-      : Array.isArray(o) ? htmlFormatter.array : htmlFormatter[typeof o])(o)
+      : Array.isArray(o) 
+        ? htmlFormatter.array 
+        : htmlFormatter[typeof o])(o)
 };
 
-export const html : Formatter = (form : object) => htmlFormatter.format(form);
+export const html : Formatter = htmlFormatter.format;

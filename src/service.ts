@@ -1,7 +1,5 @@
 
 
-const querystring = require("querystring");
-
 const validate = (form : object) =>
     form &&
     Object.keys(form).length > 0 &&
@@ -12,13 +10,14 @@ const validate = (form : object) =>
 export type Sender = (subject : string, text: string) => Promise<void>;
 export type Formatter = (form : object) => string;
 
-export const submitForm = (form : object, send : Sender, format : Formatter) : Promise<void> => 
-    validate(form) 
+export class Service {
+  static submitForm(form : object, send : Sender, format : Formatter) : Promise<void>{
+    const subjectFieldKey = process.env.SUBJECT_FIELD_KEY || "subject"
+    return validate(form) 
       ? send(
-          form["subject"] || "New message from Form2Email", 
-          format(form)
-        )
+          form[subjectFieldKey] || process.env.DEFAULT_SUBJECT || "New message from Form2Email", 
+          format(form))
       : Promise.reject(
-          "[BadRequest] Validation error: No input or invalid input received"
-        );
-    // todo: Set default subject based on environment variable
+          "Validation error: No input or invalid input received");
+  }
+}
