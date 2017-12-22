@@ -2,13 +2,19 @@
 
 A [Serverless](https://serverless.com/) microservice written in [TypeScript](http://www.typescriptlang.org/) to email the contents of a web form (or any data send via HTTP POST).
 
-## Testing
+## User Guide
+
+TODO: Deployment instructions
+
+## Developer Guide
+
+### Testing
 
 * Run `npm test` or `mocha` to run unit tests.
 * Test locally using `serverless invoke local -f submitForm -l -d "{ \"body\":\"hello=world&subject=local%20test\" }"`
 * Test in production using `serverless invoke -f submitForm -l -d "{ \"hello\":\"world\", \"subject\":\"production test\" }"`
 
-## Conventions
+### Conventions
 
 * Use TDD
 * Tests follow [Mocha](https://mochajs.org/#assertions) and [Chai](http://chaijs.com/api/bdd/) conventions
