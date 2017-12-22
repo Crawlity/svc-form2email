@@ -52,6 +52,7 @@ describe("Service", () => {
         formatSpy.calledOnce.should.be.true;
         sendStub.calledOnce.should.be.true;
         sendStub.calledWith(
+          "noreply@default.com",
           "New message from Form2Email",
           "<table>\n" +
             "  <tr>\n" +

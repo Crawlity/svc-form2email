@@ -14,12 +14,12 @@ const htmlFormatter = {
         "  </tr>\n",
       "<table>\n"
     ) + "</table>",
-  format: (o : object) =>
-    (o === null
+  format: (form : object) =>
+    (form === null
       ? htmlFormatter.null
-      : Array.isArray(o) 
+      : Array.isArray(form) 
         ? htmlFormatter.array 
-        : htmlFormatter[typeof o])(o)
+        : htmlFormatter[typeof form])(form)
 };
 
 export const html : Formatter = htmlFormatter.format;
